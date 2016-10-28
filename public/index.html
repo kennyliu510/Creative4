@@ -43,86 +43,27 @@ $(document).ready(function() {
   });
 
   $("#button").click(function(e){
+	e.preventDefault();
+
+
+	$.getJSON('/guess', function(data){
+		$("#guess").html(data.word);
+		$("guess").html(value);
+	})
+
+
+
+
    var value = $("#cityfield").val();
    console.log(value);
-   e.preventDefault();
+   
     $("#dispcity").text(value);
 
-   var myurl= "https://api.wunderground.com/api/7682041b87a6381d/geolookup/conditions/q/UT/";
-    myurl += value;
-    myurl += ".json";
-    console.log(myurl);
-   $.ajax({
-      url : myurl,
-     dataType : "json",
-     success : function(parsed_json) {
-       var location = parsed_json['location']['city'];
-       var temp_string = parsed_json['current_observation']['temperature_string'];
-       var current_weather = parsed_json['current_observation']['weather'];
-       everything = "<ul>";
-       everything += "<li>Location: "+location;
-       everything += "<li>Temperature: "+temp_string;
-       everything += "<li>Weather: "+current_weather;
-       everything += "</ul>";
-       $("#weather").html(everything);
-     }
-    });
+   });
 
-  });
 });
 
-$(document).ready(function() {
-  $( "#animalfield" ).click(function() {
-    var url = "/getdefenition?q="+$("#animalfield").val();
-    $.getJSON(url,function(data) {
-      var everything;
-      everything = "<ul>";
-     $.each(data, function(i,item) {
-       everything += "<li> "+data[i].city;
-     });
-     everything += "</ul>";
-     $("#txtHint").html(everything);
-    })
-    .done(function() { console.log('getJSON request succeeded!'); })
-    .fail(function(jqXHR, textStatus, errorThrown) { 
-      console.log('getJSON request failed! ' + textStatus); 
-      console.log("incoming "+jqXHR.responseText);
-    })
-    .always(function() { console.log('getJSON request ended!');
-    })
-    .complete(function() { console.log("complete"); }); 
-  });
 
-
-  $("#button2").click(function(e){
-   var value = $("#animalfield").val();
-   console.log(value);
-   e.preventDefault();
-    $("#dispanimal").text(value);
-
-   var myurl= "/getdefenition?q=";
-    myurl += value ;
-    myurl += ("?format=json");
-        console.log(myurl);
-   $.ajax({
-      url : myurl,
-     dataType : "json",
-    success: function(parsed_json) {
-       console.log(parsed_json);
-       var type = parsed_json['type'];
-       var definition = parsed_json['defenition'];
-       var example = parsed_json['example'];
-       everything = "<ul>";
-       everything += "<li>Type: "+type;
-       everything += "<li>Definition: "+defenition;
-       everything += "<li>Example: "+example;
-       everything += "</ul>";
-       $("#animalresult").html(everything);
-     }
-    });
-
-  });
-});
 
 </script>
 
@@ -135,9 +76,9 @@ $(document).ready(function() {
       <div class="top-bar-left">
         <ul class="menu">
           <li class="menu-text">CS201</li>
-          <li><a href="#">Utah</a></li>
-          <li><a href="#">North America</a></li>
-          <li><a href="#">International</a></li>
+          <li><a href="#"></a></li>
+          <li><a href="#"></a></li>
+          <li><a href="#"></a></li>
         </ul>
       </div>
     </div>
@@ -145,7 +86,7 @@ $(document).ready(function() {
 
     <div class="callout large primary">
       <div class="row column text-center">
-        <h1>Weather Forecast and Definition Searching</h1>
+        <h1>Type Fight</h1>
         <h3 class="subheader">Welcome</h3>
       </div>
     </div>
@@ -153,38 +94,22 @@ $(document).ready(function() {
   
     <div class="row medium-8 large-7 columns">
       <div class="blog-post">
-        <h3>Utah Weather Forecast <small>10/20/2016</small></h3>
+        <h3> <small></small></h3>
         <img class="thumbnail" src="https://www.suu.edu/parks/semester/images/bryce-1.jpg">
         <p>
           <form>
-	<h3>Enter this Word: </h3><br>
+	  <h3>Enter this Word: </h3><br>
           <textarea id="guess">No Guess</textarea>
  
-          <strong>Type the Word In:</strong> <input type="text" id="cityfield" value=""><br>
-          <strong>Suggestion:</strong> <span id="txtHint">Empty</span>
-          <input id="button" type="submit" value="Submit">
+          <br><strong>Type the Word In:</strong> <input type="text" id="cityfield" value="">
+          <strong>Correct?:</strong> <span id="txtHint">Empty</span>
+          <br><br><input id="button" type="submit" value="Click For New Word">
           </form>
-          <p>City</p>
-          <textarea id="dispcity">No City</textarea>
-          <p><strong>Current Weather</strong></p>
-          <div id="weather">No weather</div>
-        </p>
-
-        <p>
-          <form>
-          <br><strong>Enter An Aminal:</strong> <input type="text" id="animalfield" value=""><br>
-          
-          <input id="button2" type="submit" value="Submit">
-          </form>
-          <p>Animal</p>
-          <textarea id="dispanimal">No Animal</textarea>
-          <p><strong>Current Animal</strong></p>
-          <div id="animalresult">No animal</div>
         </p>
 
         <div class="callout">
           <ul class="menu simple">
-            <li><a href="#">Ken Liu </a></li>
+            <li><a href="#">Creative4 </a></li>
             <li><a href="#"></a></li>
           </ul>
         </div>

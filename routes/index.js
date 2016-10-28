@@ -42,7 +42,7 @@ router.get('/getdefenition' ,function(req,res) {
  });    
 
 var word = [
-'few', 'satisfaction', 'program', 'time'
+'few', 'satisfaction', 'program', 'time', 'word', 'computer', 'chair', 'pikachu', 'onomatopoiea'
 ];
 
 var current = 0;
